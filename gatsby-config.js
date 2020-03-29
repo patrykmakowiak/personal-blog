@@ -1,4 +1,6 @@
-require('dotenv').config();
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 
 module.exports = {
   siteMetadata: {
@@ -43,6 +45,17 @@ module.exports = {
 
         // Disable automatic reloading of content when some change occurs on DatoCMS:
         disableLiveReload: false,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-prefetch-google-fonts',
+      options: {
+        fonts: [
+          {
+            family: 'Sen',
+            variants: ['400', '700'],
+          },
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
