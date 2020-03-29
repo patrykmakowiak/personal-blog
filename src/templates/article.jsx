@@ -6,7 +6,7 @@ import readingTime from 'reading-time';
 import PropTypes from 'prop-types';
 import { DiscussionEmbed } from 'disqus-react';
 
-import Layout from '../components/layout';
+import Layout from '../components/Layout/Layout';
 
 const Title = styled.h2`
   margin-bottom: 16px;
@@ -56,7 +56,6 @@ const Article = ({ pageContext: { slug }, data: { article } }) => {
 
   return (
     <Layout>
-      {process.env.GATSBY_API_URL}
       <Title>{article.title}</Title>
       <Info>
         {dateFormat(article.meta.publishedAt, 'dS mmmm yyyy')}
