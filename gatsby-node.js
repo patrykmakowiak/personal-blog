@@ -1,7 +1,50 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const wrapper = (promise) => promise.then((result) => {
+  if (result.errors) {
+    throw result.errors;
+  }
+  return result;
+});
 
-// You can delete this file if you're not using it
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+
+  const result = await wrapper(
+    graphql(`
+      {
+        allDatoCmsArticle {
+          edges {
+            node {
+              id
+              title
+              slug
+              sneakpeek
+              content
+              meta {
+                createdAt
+                updatedAt
+                publishedAt
+                firstPublishedAt
+                isValid
+                status
+              }
+            }
+          }
+        }
+      }
+    `),
+  );
+  const articles = result.data.allDatoCmsArticle.edges;
+  const articleTemplate = require.resolve('./src/templates/article.jsx');
+
+  articles.forEach(({ node }) => {
+    const { slug } = node;
+
+    createPage({
+      path: slug,
+      component: articleTemplate,
+      context: {
+        slug,
+      },
+    });
+  });
+};
