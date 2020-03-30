@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { DiscussionEmbed } from 'disqus-react';
 
 import Layout from '../components/Layout/Layout';
+import SEO from '../components/Seo/Seo';
 
 const Title = styled.h2`
   margin-bottom: 16px;
@@ -56,6 +57,7 @@ const Article = ({ pageContext: { slug }, data: { article } }) => {
 
   return (
     <Layout>
+      <SEO title={article.title} />
       <Title>{article.title}</Title>
       <Info>
         {dateFormat(article.meta.publishedAt, 'dS mmmm yyyy')}
@@ -63,7 +65,7 @@ const Article = ({ pageContext: { slug }, data: { article } }) => {
         {articleReadTime}
       </Info>
       <Content>{article.content}</Content>
-      <DiscussionEmbed { ...disqusConfig } />
+      <DiscussionEmbed {...disqusConfig} />
     </Layout>
   );
 };

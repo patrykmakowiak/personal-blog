@@ -6,7 +6,7 @@ import Blog from '../components/Blog/Blog';
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="Blog" />
     <Blog />
   </Layout>
 );

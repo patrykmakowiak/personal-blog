@@ -11,10 +11,10 @@ const propTypes = {
 };
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
+  const { datoCmsBlog } = useStaticQuery(graphql`
     query {
       datoCmsBlog {
-        name
+        title
         description
       }
     }
@@ -23,8 +23,8 @@ const Layout = ({ children }) => {
   return (
     <S.Container>
       <Header
-        siteTitle={data.datoCmsBlog.name}
-        siteDescription={data.datoCmsBlog.description}
+        siteTitle={datoCmsBlog.title}
+        siteDescription={datoCmsBlog.description}
       />
       <S.Main>{children}</S.Main>
     </S.Container>
