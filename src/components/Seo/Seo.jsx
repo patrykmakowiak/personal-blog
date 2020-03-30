@@ -13,21 +13,19 @@ import { useStaticQuery, graphql } from 'gatsby';
 function SEO({
   description, lang, meta, title,
 }) {
-  const { site } = useStaticQuery(
+  const { datoCmsBlog } = useStaticQuery(
     graphql`
       query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
+        datoCmsBlog {
+          title
+          description
+          author
         }
       }
     `,
   );
 
-  const metaDescription = description || site.siteMetadata.description;
+  const metaDescription = description || datoCmsBlog.description;
 
   return (
     <Helmet
@@ -35,7 +33,7 @@ function SEO({
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${datoCmsBlog.title}`}
       meta={[
         {
           name: 'description',
@@ -59,7 +57,7 @@ function SEO({
         },
         {
           name: 'twitter:creator',
-          content: site.siteMetadata.author,
+          content: datoCmsBlog.author,
         },
         {
           name: 'twitter:title',
