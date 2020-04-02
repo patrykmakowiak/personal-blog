@@ -1,6 +1,6 @@
 # personal-blog
 
-### [Live demo](https://clever-lalande-96a839.netlify.com/)
+### [Live demo](https://cloudmood.netlify.com/)
 
 ## 🚀 Quick start
 
